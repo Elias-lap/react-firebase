@@ -1,0 +1,247 @@
+
+/* global */
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+
+  font-family: sans-serif;
+
+  text-decoration: none;
+  list-style: none;
+
+  letter-spacing: 1px;
+}
+
+html {
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+button:hover{
+  scale: 1.05;
+  transition: .5s;
+}
+button:active{
+  scale: 0.9;
+}
+/* styling budy */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+text-align: center;
+}
+h2 ,h4 , h6{
+  color: rgba(0, 0, 0, 0.507);
+}
+.link-to-signIn {
+  color: #000000;
+}
+.link-to-signIn a {
+  color: #0000ff;
+  border-bottom: 1px solid  #0000ff;
+
+}
+/* styling header */
+header {
+  background-color: #1b1b1b;
+}
+
+h1 {
+  padding: 20px;
+  font-size: 25px;
+}
+
+/* ===============
+   1.  ul class .flex
+================ */
+
+.hide-when-mobile {
+  display: flex;
+  justify-content: space-around;
+  background-color:rgb(0, 217, 255);
+}
+.hide-when-mobile.dark {
+  background-color: black;
+}
+.flex {
+  display: flex;
+}
+.main-list {
+  padding: 20px;
+  font-size: 19px;
+  position: relative;
+}
+.main-link {
+  padding: 8px 15px;
+  
+}
+.dark.main-link {
+  color: beige;
+}
+
+.main-link:hover ,.main-link:focus  {
+  color: rgb(78, 85, 85);
+  box-shadow: 0 0 5px cyan;
+  border-radius: 5px;
+}
+
+/* =======================================
+   1.1 sub HTML + css + JavaScript
+======================================== */
+.sub-ul li {
+  padding: 8px 0;
+  font-size: 17px;
+  border-bottom: 1px solid black;
+}
+.sub-ul li a:hover  {
+  color: cyan;
+  font-weight: bold;
+}
+/* ==================
+    2. main & footer
+===================== */
+main {
+  color: #1b1b1b;
+  height: calc(100vh - 128.64px);
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+footer {
+  background-color:rgb(0, 217, 255);
+  padding: 20px 0;
+  text-align: center;
+  font-size: 18px;
+}
+/* styling for dark Mood  */
+.DarkMood {
+  height: 2rem;
+  width: 4rem;
+  border-radius: 2rem;
+  margin-top: 1rem;
+border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.DarkMood i {
+  font-size: 30px;
+  
+}
+.fa-sun{
+  color: yellow;
+}
+
+.dark {
+  background-color: #1a181899;
+}
+.dark h2 {
+  color: rgb(245, 240, 240);
+}
+footer.dark{
+  background-color: black;
+}
+ /* styling Form */
+ form{
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+  
+ }
+ form input{
+  width: 20rem;
+  padding: .5rem .5rem;
+  border-radius: 1rem;
+  border:  1px solid gray;
+  transition: .5s;
+  color: black;
+  cursor: pointer;
+ }
+ form input::placeholder{
+  padding: 1.2rem;
+  
+ }
+ form input:focus,  form input:hover{
+   width: 21rem;
+   border:  1px solid gray;
+  
+ }
+ form button ,.button-delete{
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(14, 99, 99);
+  border: none;
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: .5s;
+ }
+ form button:hover{
+  
+  background-color: rgb(2, 85, 85);
+  cursor: pointer;
+  
+  
+ }
+ form h6 .link {
+  color:  rgb(14, 99, 99);
+  text-decoration: underline;
+ }
+ /* profile-page */
+ 
+ .Profile-page h5 {
+  color: #000000;
+
+ }
+ .Moment{
+  color: #1b1b1b;
+ }
+ .unorder-list-Profile-Page{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+ }
+ /* style user-emailVerified */
+ .container-verified{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+ }
+ .user-emailVerified{
+  color:  rgba(0, 0, 0, 0.842);
+ }
+ .button-verified{
+  color: #000000;
+  font-weight: 700;
+  font-size: x-large;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  background-color: #1b1b1b73;
+  cursor: pointer;
+  border: 1px solid black;
+
+ }
