@@ -1,9 +1,10 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import ContextDarkModd from "../context/ConetxtDarkModd";
+import ContextDarkModd from "../../context/ConetxtDarkModd";
 import { useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
+
 function Header() {
   const [user] = useAuthState(auth);
   const {  toggleMood } = useContext(ContextDarkModd);
@@ -12,11 +13,10 @@ function Header() {
     <>
       <header
         className={`hide-when-mobile ${
-          localStorage.getItem("MyMood")   === null ? "light" : localStorage.getItem("MyMood")
+          localStorage.getItem("MyMood") === null ? "light" : localStorage.getItem("MyMood")
         }`}
       >
         <h1>
-          {" "}
           <Link to={"/"}>Home </Link>{" "}
         </h1>
 

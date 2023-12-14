@@ -1,0 +1,15 @@
+/* profile-page */
+ 
+.Profile-page h5 {
+  color: #000000;
+
+ }
+ .Moment{
+  color: #1b1b1b;
+ }
+ .unorder-list-Profile-Page{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+ }

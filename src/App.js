@@ -8,6 +8,7 @@ import Layout from "./Pages/Layout/Layout.jsx";
 
 import About from "./Pages/About/About.jsx";
 import Home from "./Pages/Home/Home.jsx";
+import EditTask from "./components/EditTask/EditTask.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,26 +23,31 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
-        errorElement: <ErrorPage />,
+        errorElement: <ErrorPage/>,
       },
       
       {
         path: "/about",
         element: <About />,
-        errorElement: <ErrorPage />,
+        errorElement: <ErrorPage/>,
+      },
+      {
+        path: "/EditTask/:userId",
+        element: <EditTask/>,
+        errorElement: <ErrorPage/>,
       },
     ],
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage/>,
   },
   {
     path: "/signin",
     element: <Signin />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage/>,
   },
   {
     path: "/signup",
     element: <Signup />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorPage/>,
   },
 ]);
 function App() {

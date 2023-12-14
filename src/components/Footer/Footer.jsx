@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import ContextDarkModd from "../context/ConetxtDarkModd";
-
+import ContextDarkModd from "../../context/ConetxtDarkModd";
+import './Footer.css'
 function Footer() {
   const {Mood}=useContext(ContextDarkModd)
   return (

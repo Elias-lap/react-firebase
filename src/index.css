@@ -4,13 +4,9 @@
   margin: 0;
   padding: 0;
   color: white;
-
   font-family: sans-serif;
-
   text-decoration: none;
   list-style: none;
-
-  letter-spacing: 1px;
 }
 
 html {
@@ -29,6 +25,21 @@ button:hover{
 }
 button:active{
   scale: 0.9;
+}
+/* scrolBar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #29262638;
 }
 /* styling budy */
 body {
@@ -54,20 +65,14 @@ h2 ,h4 , h6{
   border-bottom: 1px solid  #0000ff;
 
 }
-/* styling header */
+/*///////////////////// styling header ////////////////////////////////*/
 header {
   background-color: #1b1b1b;
 }
-
 h1 {
   padding: 20px;
   font-size: 25px;
 }
-
-/* ===============
-   1.  ul class .flex
-================ */
-
 .hide-when-mobile {
   display: flex;
   justify-content: space-around;
@@ -78,6 +83,7 @@ h1 {
 }
 .flex {
   display: flex;
+  align-items: center;
 }
 .main-list {
   padding: 20px;
@@ -98,24 +104,13 @@ h1 {
   border-radius: 5px;
 }
 
-/* =======================================
-   1.1 sub HTML + css + JavaScript
-======================================== */
-.sub-ul li {
-  padding: 8px 0;
-  font-size: 17px;
-  border-bottom: 1px solid black;
-}
-.sub-ul li a:hover  {
-  color: cyan;
-  font-weight: bold;
-}
+
 /* ==================
-    2. main & footer
+    2. main 
 ===================== */
 main {
   color: #1b1b1b;
-  height: calc(100vh - 128.64px);
+  min-height: calc(100vh - 128.64px);
   font-size: 30px;
   font-weight: bold;
   line-height: 50px;
@@ -124,14 +119,11 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%;
+  overflow-y: auto;
   
 }
-footer {
-  background-color:rgb(0, 217, 255);
-  padding: 20px 0;
-  text-align: center;
-  font-size: 18px;
-}
+
 /* styling for dark Mood  */
 .DarkMood {
   height: 2rem;
@@ -197,30 +189,12 @@ footer.dark{
   transition: .5s;
  }
  form button:hover{
-  
   background-color: rgb(2, 85, 85);
   cursor: pointer;
-  
-  
  }
  form h6 .link {
   color:  rgb(14, 99, 99);
   text-decoration: underline;
- }
- /* profile-page */
- 
- .Profile-page h5 {
-  color: #000000;
-
- }
- .Moment{
-  color: #1b1b1b;
- }
- .unorder-list-Profile-Page{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-
  }
  /* style user-emailVerified */
  .container-verified{

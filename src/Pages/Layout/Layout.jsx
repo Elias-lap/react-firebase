@@ -1,6 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import {  Outlet } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import ContextDarkModd from "../../context/ConetxtDarkModd";
@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 function Layout() {
   const { Mood } = useContext(ContextDarkModd);
-  const [user ,loading] = useAuthState(auth);
+  const [user ] = useAuthState(auth);
   console.log(user);
   return (
     <>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Moment from "react-moment";
 import { deleteUser } from "firebase/auth";
 import ReactLoading from "react-loading";
+import './Profile.css'
 function Profile() {
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);

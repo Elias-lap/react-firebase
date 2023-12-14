@@ -1,0 +1,85 @@
+.home-form-modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  background-color: rgba(0, 0, 0, 0.295);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal{
+  padding-top: 1rem;
+  background-color: rgb(238, 218, 218);
+  height: 360px;
+  width: 445px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  position: fixed;
+  overflow-y: auto;
+  transform: translatey(-14%);
+  padding: 1rem  0rem;
+  animation: fadeIn 0.3s ease-in-out;
+
+
+}
+
+@keyframes fadeIn {
+  from {
+    scale: 0 ;transform: translate(-100vh);
+  }
+  to {
+    scale: 1;transform: translate(0)
+  }
+}
+.reset-email:hover{
+  background-color: rgb(236, 183, 183);
+}
+.Rseet{
+  background-color: rgb(245, 245, 150);
+  color: rgb(31, 31, 1);
+  margin-top: .5rem;
+}
+.Rseet:hover{
+  background-color: rgb(247, 247, 124);
+  color: rgb(31, 31, 1);
+}
+
+
+.fa-xmark{
+  color:  rgba(0, 0, 0, 0.623);
+  position: absolute;
+  top: 10px ;
+  right: 10px;
+  transition: .5s;
+}
+.fa-xmark:hover{
+  transform: rotate(90deg);
+  cursor: pointer;
+  color: rgb(233, 98, 98);
+  
+}
+/* scrolbar style */
+
+
+@media screen and (max-width: 500px){
+  .modal{
+    /* height: 280px; */
+    width: 320px;
+    overflow-y: auto;
+  }
+  .input-small-screen{
+    width: 250px;
+  }
+  h6{
+    font-size: 1rem;
+  }
+  .fa-xmark{
+    top: 0px ;
+  }
+}

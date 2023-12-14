@@ -5,11 +5,13 @@ import App from "./App";
 import {DarkMood} from './context/ConetxtDarkModd'
 import { HelmetProvider } from "react-helmet-async";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import  { Toaster } from 'react-hot-toast';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <HelmetProvider>
       <DarkMood>
+        <Toaster  position="top-right"/>
       <App />
       </DarkMood>
     </HelmetProvider>
