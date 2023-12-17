@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ReactLoading from "react-loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import toast from "react-hot-toast";
 function Signup() {
   const [user, loading] = useAuthState(auth);
   const [email, setemail] = useState("");
@@ -14,7 +15,7 @@ function Signup() {
   const [password, setpassword] = useState("");
   const [hasError] = useState(false);
   const [errorfirebase, setError] = useState("");
-
+  const [loadingSighnup , setloadingSighnup] =useState(false)
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
@@ -23,29 +24,37 @@ function Signup() {
       }
     }
   });
-  function SignUp(e) {
+  async function SignUp(e) {
+    
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
+    setloadingSighnup(true)
+  await    createUserWithEmailAndPassword(auth, email, password)
+    
       .then((userCredential) => {
+        
+        
         // Signed up
         // const user = userCredential.user;
         sendEmailVerification(auth.currentUser).then(() => {
-          console.log("Email verification sent!");
-          // ...
+          toast.success("Email verification sent!");
         });
         updateProfile(auth.currentUser, {
           displayName: userName,
         })
           .then(() => {
             // Profile updated!
+            toast.success("You have acount Now Please verify your email");
             navigate("/");
+          
           })
           .catch((error) => {
-            console.log(error.code);
-            <ErrorPage/>
+            toast.error(error.code);
+          
+            <ErrorPage />;
           });
       })
       .catch((error) => {
+        toast.error(error.code);
         const errorCode = error.code;
         if (errorCode === "auth/invalid-credential") {
           setError("Wrong Email or password");
@@ -55,6 +64,8 @@ function Signup() {
           setError(errorCode);
         }
       });
+
+      setloadingSighnup(false)
   }
   if (loading) {
     return (
@@ -125,15 +136,25 @@ function Signup() {
               placeholder="Password"
               type="password"
             />
-            <button onClick={(e) => SignUp(e)}>Sign up </button>
+            <button onClick={(e) => SignUp(e)}>
+              {loadingSighnup ? (
+                <ReactLoading
+                  type="spokes"
+                  color="black"
+                  height={25}
+                  width={25}
+                />
+              ) : (
+                "Sign up"
+              )}
+            </button>
             <h6>
               Already Have Account
               <Link className="link" to="/signin">
-              
                 Signin
               </Link>
             </h6>
-            {hasError && <h6>'{errorfirebase}'</h6>}
+            {hasError &&  toast.success({errorfirebase})}
           </form>
         </main>
       </>

@@ -10,7 +10,9 @@ import ModalTask from "./ModalTask";
 import toast from "react-hot-toast";
 import { doc, setDoc } from "firebase/firestore";
 import FetchingData from "./FetchingData";
+import { useTranslation } from "react-i18next";
 function Home() {
+  const {  i18n } = useTranslation();
   const [user, loading] = useAuthState(auth);
   const [showEmailverifi, setshowEmailverifi] = useState(false);
   const [modal, setCloseModal] = useState(false);
@@ -18,17 +20,17 @@ function Home() {
   const [task, setTask] = useState("");
   const [title, setTitle] = useState("");
   const [Loading, setLoading] = useState(false);
-
   const sendEmailVerify = () => {
     sendEmailVerification(auth.currentUser).then(() => {
       setshowEmailverifi(true);
     });
   };
+
   // functions of Maodal //
   const handelChangeState = (value) => {
     setCloseModal(value);
-    setArr([])
-    setTitle('')
+    setArr([]);
+    setTitle("");
   };
   const Addtitle = (eo) => {
     eo.preventDefault();
@@ -41,35 +43,33 @@ function Home() {
   const AddTaskToArr = (eo) => {
     eo.preventDefault();
     if (task !== "") {
-      if(!arr.includes(task)){
+      if (!arr.includes(task)) {
         setArr([...arr, task]);
       }
-    
     }
     setTask("");
   };
-   const sendDatatofirestore= async (eo)=>{
+  const sendDatatofirestore = async (eo) => {
     const IdData = new Date().getTime();
-              eo.preventDefault();
-              setLoading(true);
-              await setDoc(doc(db, `${user.uid}`, `${IdData}`), {
-                title,
-                details: arr,
-                id: IdData,
-                complited : false
-              });
-              setLoading(false);
-              setTitle("");
-              setTask("");
-              setArr([]);
-              toast.success('The data has been successfully sent.')
-              closeModalAfterSendingData()
-   }
+    eo.preventDefault();
+    setLoading(true);
+    await setDoc(doc(db, user.uid, `${IdData}`), {
+      title,
+      details: arr,
+      id: IdData,
+      complited: false,
+    });
+    setLoading(false);
+    setTitle("");
+    setTask("");
+    setArr([]);
+    toast.success("The data has been successfully sent.");
+    closeModalAfterSendingData();
+  };
   const closeModalAfterSendingData = () => {
     setTimeout(setCloseModal(false), 2000);
   };
   // fetching data frome firestore
-
 
   return (
     <>
@@ -117,19 +117,7 @@ function Home() {
 
       {user && user.emailVerified && (
         <main>
-          {/* <h2 className="classForSmallScreen"> welcome {user.displayName} <span>🧡</span></h2>  */}
-
-          <div className="home-buttons">
-            <button className="home-button">Newest first</button>
-            <button className="home-button">Oldest first</button>
-
-            <select className="select">
-              <option className="option-1">All task</option>
-              <option className="option-2">Completed</option>
-              <option className="option-3">Not Completed</option>
-            </select>
-          </div>
-          <div className="container-tasks">
+          <div >
             {modal && (
               <ModalTask
                 handelChangeState={handelChangeState}
@@ -142,97 +130,22 @@ function Home() {
                 closeModalAfterSendingData={closeModalAfterSendingData}
                 Loading={Loading}
                 sendDatatofirestore={sendDatatofirestore}
-                
               />
-              // <Modal closeMadal={handelChangeState}>
-              //   <ul className="box-modal-addNewTask">
-              //     <li>
-              //       <input
-              //         className="input-small-screen-Add-task"
-              //         onChange={(eo) => {
-              //           eo.preventDefault();
-              //           setTitle(eo.target.value);
-              //         }}
-              //         required
-              //         placeholder="Add title :"
-              //         type="text"
-              //         value={title}
-              //       />
-              //     </li>
-              //     <li>
-              //       <div>
-              //         <input
-              //           className="input-small-screen-Add-task"
-              //           onChange={(eo) => {
-              //             eo.preventDefault();
-              //             setTask(eo.target.value);
-              //           }}
-              //           required
-              //           value={task}
-              //           placeholder="details"
-              //           type="text"
-              //         />
-              //         <button
-              //           onClick={(eo) => {
-              //             AddTaskToArr();
-              //             eo.preventDefault();
-              //           }}
-              //           className="Add-new-task-button"
-              //         >
-              //           Add
-              //         </button>
-              //       </div>
-              //     </li>
-              //     {arr.map((map, index) => (
-              //       <li className="task" key={index}>
-              //         {map}
-              //       </li>
-              //     ))}
-
-              //     <li>
-              //       <button
-              //         onClick={async (eo) => {
-              //           const IdData = new Date().getTime();
-              //           eo.preventDefault();
-              //           setLoading(true);
-              //           await setDoc(doc(db, `${user.uid}`, `${IdData}`), {
-              //             title,
-              //             details: arr,
-              //             id: IdData,
-              //           });
-              //           setLoading(false);
-              //           setTitle("");
-              //           setTask("");
-              //           setArr([]);
-              //           toast.success('The data has been successfully sent.')
-              //           closeModalAfterSendingData()
-
-              //         }}
-              //         className="Add-new-task-button-submity"
-              //       >
-              //         {Loading ? (
-              //           <ReactLoading
-              //             type="spokes"
-              //             color="black"
-              //             height={20}
-              //             width={20}
-              //           />
-              //         ) : (
-              //           "submit"
-              //         )}
-              //       </button>
-              //     </li>
-              //   </ul>
-              // </Modal>
             )}
-        <FetchingData user={user}/>
-          </div>
 
+<FetchingData user={user}   />
+          </div>
+        
           <button
+          dir="auto"
             onClick={() => setCloseModal(true)}
             className="home-button button-Add "
           >
-            Add New Task <i className="fa-solid fa-plus"></i>
+            {i18n.language === "en" && "Add New Task" }
+            {i18n.language === "ar" && "اضافة مهام جديد" }
+            {i18n.language === "pl" && "Dodaj nowe zadanie" }
+            
+            <i className="fa-solid fa-plus"></i>
           </button>
         </main>
       )}

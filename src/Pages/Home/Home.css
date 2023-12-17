@@ -1,25 +1,21 @@
-
-
 /* style options */
-.home-buttons{
+.home-buttons {
   display: flex;
-  justify-content: space-between;
-  width: 30rem;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
   margin-top: 2rem;
 }
 @media (max-width: 705px) {
-  .home-buttons{
-  margin: 1.5rem  0rem;
+  .home-buttons {
+    margin: 1.5rem 0rem;
   }
 }
 @media (max-width: 500px) {
-  .home-buttons{
-    flex-direction: column; 
-     align-items: center;
-    justify-content: space-between; 
-    height: 10rem;
-    width: max-content;
-
+  .home-buttons {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -32,175 +28,190 @@
   padding: 1rem 1.2rem;
   border-radius: 1rem;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
   outline: none;
   width: max-content;
- }
+}
+.home-button-2 {
+  opacity: 0.5;
+}
+.home-button-3 {
+  opacity: 1;
+}
 
- .option{
+.dispalyNone {
+  display: none;
+}
+.option {
   color: beige;
- }
- .dark .home-button , .dark .select ,.dark  .option {
-  color: rgb(14, 13, 13)
- }
- 
- .home-button:hover ,.select:hover{
+}
+.dark .home-button,
+.dark .select,
+.dark .option {
+  color: rgb(14, 13, 13);
+}
+
+.home-button:hover,
+.select:hover {
   background-color: rgb(2, 85, 85);
   cursor: pointer;
- }
- .select{
+}
+.select {
   color: beige;
   font-size: 11px;
   font-weight: bold;
+  height: 40px;
   background-color: rgb(14, 99, 99);
   border: none;
   padding-left: 13px;
   border-radius: 1rem;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
   outline: none;
-
- }
- @media (max-width: 500px) {
-  .select{
+}
+@media (max-width: 500px) {
+  .select {
     height: 2.5rem;
   }
 }
- .select .option-1{
-   font-size: 15px;
- }
- /* show tasks */
- .container-tasks{
+.select .option-1 {
+  font-size: 15px;
+}
+/* show tasks */
+.container-tasks {
   margin: 2rem 0rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-
-
- }
- @media only screen and (max-width: 1000px) {
-  .container-tasks{
-  
+}
+@media only screen and (max-width: 1000px) {
+  .container-tasks {
     justify-content: center;
-  
-   }
+  }
 }
 
- .budy-task{
+.budy-task {
   border: 3px solid rgba(66, 65, 65, 0.644);
   width: 21rem;
   border-radius: 1rem;
-  transition: .2s;
+  transition: 0.2s;
   height: 141px;
   line-height: 2rem;
   cursor: pointer;
   overflow-y: auto;
-position: relative;
-z-index: 99;
- }
-.dark  .budy-task{
+  position: relative;
+  z-index: 99;
+}
+@media only screen and (max-width: 800px) {
+  .budy-task {
+    width: 18rem;
+  }
+}
+.dark .budy-task {
   border: 3px solid rgba(223, 219, 219, 0.644);
-  
- }
-.dark  .budy-task:hover{
+}
+.dark .budy-task:hover {
   border-left: 10px solid rgba(223, 219, 219, 0.644);
-  
- }
- .budy-task:hover{
+}
+.budy-task:hover {
   border-left: 10px solid rgba(66, 65, 65, 0.644);
-
- }
- .budy-task h2{
+}
+.budy-task h2 {
   margin: auto;
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: bolder;
- }
- .budy-task ul{
-
-  font-size: .8rem;
+}
+.budy-task .Link-EditTask {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.budy-task ul {
+  font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
- }
- .budy-task ul li{
-
+}
+.budy-task ul li {
   list-style-type: circle;
   list-style-position: inside;
   text-align: start;
-  
 
- color: rgba(0, 0, 0, 0.733);
-
- }
- .dark .budy-task ul li ,.button-Add{
+  color: rgba(0, 0, 0, 0.733);
+}
+.dark .budy-task ul li,
+.button-Add {
   color: beige;
- }
- .button-Add{
+}
+.button-Add {
   margin: 1rem 0rem;
- }
- .budy-task p{
-position: absolute;
- right: 0;
- bottom : 0;
-font-size: .8rem;
-text-align: right;
-margin:0rem 1rem;
-color: rgba(0, 0, 255, 0.616);
+}
+.budy-task p {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 0.8rem;
+  text-align: right;
+  margin: 0rem 1rem;
+  color: rgba(0, 0, 255, 0.616);
+}
 
- }
-
-
- /* button addd task */
- .dark .home-button   .fa-plus{
+/* button addd task */
+.dark .home-button .fa-plus {
   color: rgba(0, 0, 0, 0.788);
- }
-.home-button   .fa-plus{
-  color:beige
- }
+}
+.home-button .fa-plus {
+  color: beige;
+  margin: 0rem  .2rem;
+}
 
-
- /* styling for modal  */
- .input-small-screen-Add-task{
+/* styling for modal  */
+.input-small-screen-Add-task {
   border: none;
   outline: none;
-  width: 18rem;
- }
- .input-small-screen-Add-task:hover ,.input-small-screen-Add-task:focus{
+  width: 14rem;
+}
+.input-small-screen-Add-task:hover,
+.input-small-screen-Add-task:focus {
   border: none;
-  width: 18rem;
- }
- .box-modal-addNewTask{
+  width: 15rem;
+}
+.box-modal-addNewTask {
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex-wrap: nowrap;
   height: 100%;
- }
- .Add-new-task-button{
+}
+.container-details{
+  margin: 0;
+
+
+}
+.Add-new-task-button {
   background-color: rgba(4, 0, 255, 0.37);
-  padding: .7rem 1.5rem;
- }
- .Add-new-task-button:hover{
+  padding: 0.5rem 1rem;
+}
+.Add-new-task-button:hover {
   background-color: rgba(4, 0, 255, 0.658);
-  
- }
- .Add-new-task-button-submity{
+}
+.Add-new-task-button-submity {
   background-color: rgba(89, 0, 255, 0.459);
-  padding: .7rem 1.5rem;
- }
- .Add-new-task-button-submity:hover{
+  padding: 0.7rem 1.5rem;
+}
+.Add-new-task-button-submity:hover {
   background-color: rgba(4, 0, 255, 0.658);
-  
- }
- /* styling tasks in Modal */
- .task{
+}
+/* styling tasks in Modal */
+.task {
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.555);
   line-height: 1.5rem;
   list-style-type: circle;
   list-style-position: inside;
- }
+}

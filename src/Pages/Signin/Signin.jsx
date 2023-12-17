@@ -10,6 +10,7 @@ import { auth } from "../../firebase/config";
 import "./Signin.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Modal from "../../components/Modal/Modal";
+import toast from "react-hot-toast";
 
 function Signin() {
   const [email, setemail] = useState("");
@@ -21,40 +22,41 @@ function Signin() {
   const [modal, setCloseModal] = useState(false);
   const [ckeckEmail, setckeckEmail] = useState(false);
   const [loading] = useAuthState(auth);
-
+  const [loadingSighnin , setloadingSighnin] =useState(false)
   const handelChangeState = (value) => {
     setCloseModal(value);
   };
-  const SignIn = (e) => {
+  const SignIn = async (e) => {
+    setloadingSighnin(true)
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+   await  signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-        // const user = userCredential.user;
-        console.log("suucesfully signed in ");
+        toast.success("suucesfully signed in ");
         navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
+        toast.error(errorCode)
         sethasError(error);
         if (errorCode === "auth/invalid-credential") {
           setError("Wrong Email or password");
         } else {
           setError(errorCode);
         }
-      });
+      })
+      setloadingSighnin(false)
   };
   const forgotPassword = (e) => {
     e.preventDefault();
     sendPasswordResetEmail(auth, resetemail)
       .then(() => {
-        console.log("you recived now email ");
+        toast.success('you recived now email')
         setckeckEmail(true);
       })
       .catch((error) => {
         const errorCode = error.code;
-        console.log(errorCode);
-        // ..
+        toast.error({errorCode})
+        
       });
   };
   return (
@@ -108,7 +110,22 @@ function Signin() {
             placeholder="Password"
             type="password"
           />
-          <button onClick={(e) => SignIn(e)}>Sign In </button>
+          <button onClick={(e) => SignIn(e)}>
+          {loadingSighnin ? (
+                <ReactLoading
+                  type="spokes"
+                  color="black"
+                  height={25}
+                  width={25}
+                />
+              ) : (
+                "  Sign In "
+              )}
+            
+          
+            
+            
+            </button>
           <h6>
             Dont Have Account Please{" "}
             <Link className="link" to="/signup">

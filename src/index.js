@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import '../src/i18n.js';
 import {DarkMood} from './context/ConetxtDarkModd'
 import { HelmetProvider } from "react-helmet-async";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import  { Toaster } from 'react-hot-toast';
+import "./index.css";
+import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

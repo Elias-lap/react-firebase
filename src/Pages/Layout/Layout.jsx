@@ -8,8 +8,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 function Layout() {
   const { Mood } = useContext(ContextDarkModd);
+  // eslint-disable-next-line no-unused-vars
   const [user ] = useAuthState(auth);
-  console.log(user);
+  
   return (
     <>
       <Helmet>

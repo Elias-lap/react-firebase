@@ -2,52 +2,74 @@ import { Helmet } from "react-helmet-async";
 import "./EditTask.css";
 import { auth, db } from "../../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
-import { useDocument } from "react-firebase-hooks/firestore";
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
-import Moment from "react-moment";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  arrayRemove,
+  arrayUnion,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import ReactLoading from "react-loading";
-import toast from "react-hot-toast";
 import { useState } from "react";
+import TitleEdit from "./TitleEdit";
+import SubTasksSection from "./SubTasksSection";
+import Btnssection from "./Btnssection ";
 function EditTask() {
-  const [user] = useAuthState(auth);
-  const [title, setTitle] = useState("");
-
+  const [user, loading, , error] = useAuthState(auth);
   let { userId } = useParams();
-  const [value, loading, error] = useDocument(doc(db, user?.uid, userId));
-
+  const [isOpeninputAddTask, setisOpeninputAddTask] = useState(false);
+  const Navigate = useNavigate();
+  const [complited, setComplited] = useState(false);
+  const [showData, setshowData] = useState(false);
+  const [newTask, setNewTask] = useState("");
   // functions
-  const updateData = async () =>
+  const updateData = async (e) =>
     await updateDoc(doc(db, user.uid, userId), {
-      title,
+      title: e.target.value,
     });
-
   const updateCheckedBox = async (eo) => {
     if (eo.target.checked) {
-      await updateDoc(doc(db, user.uid, userId), {
-        complited: true,
-      });
+      await updateDoc(
+        doc(db, user.uid, userId),
+        {
+          complited: true,
+        },
+        setComplited(true)
+      );
     } else {
-      await updateDoc(doc(db, user.uid, userId), {
-        complited: false,
-      });
+      await updateDoc(
+        doc(db, user.uid, userId),
+        {
+          complited: false,
+        },
+        setComplited(false)
+      );
     }
   };
-
+  const AddToArray = async (VARIABLE) => {
+    setNewTask("");
+    await updateDoc(doc(db, user.uid, userId), {
+      details: arrayUnion(VARIABLE),
+    });
+  };
   const DeleteArray = async (ITEM) => {
     await updateDoc(doc(db, user.uid, userId), {
       details: arrayRemove(ITEM),
     });
   };
-
-  // const AddToArray = async (VARIABLE)=>{
-  //   await updateDoc(doc(db, user.uid, userId), {
-  //     details: arrayUnion(VARIABLE),
-  //   });
-  // }
+  const DeleteItem = async () => {
+    setshowData(true);
+    await deleteDoc(doc(db, user.uid, userId));
+    Navigate("/", { replace: true });
+  };
   // /////////////////////
   if (error) {
-    return toast.error(error.message);
+    return (
+      <main>
+        <h2>{error.message}</h2>
+      </main>
+    );
   }
 
   if (loading) {
@@ -57,97 +79,62 @@ function EditTask() {
       </div>
     );
   }
+
   if (user) {
-    if (value) {
-      return (
-        <>
-          <Helmet>
-            <title>Edit Page</title>
-            <meta
-              name="description"
-              content="Web site created using create-react-app Css Page "
-            />
-          </Helmet>
+    return (
+      <>
+        <Helmet>
+          <title>Edit Page</title>
+          <meta
+            name="description"
+            content="Web site created using create-react-app Css Page "
+          />
+        </Helmet>
+        {showData ? (
           <main>
-            <div className="home-title">
-              <input
-                onChange={(e) => {
-                  return setTitle(e.target.value);
-                }}
-                defaultValue={value.data().title}
-                id="Mobile"
-                type="text"
-                placeholder="Edit tasks"
+            <div>
+              <ReactLoading
+                type="spokes"
+                color="black"
+                height={500}
+                width={250}
               />
-              <label htmlFor="Mobile">
-                <i
-                  onClick={() => {
-                    updateData();
-                    toast.success("title updated");
-                  }}
-                  className="fa-solid fa-pen-to-square"
-                ></i>
-              </label>
             </div>
-            <div className="body-title">
-              <h4>
-                Created :
-                <Moment
-                  className="Moment"
-                  fromNow
-                  date={value.data().id}
-                ></Moment>
-              </h4>
-              <div className="check-box">
-                <input
-                  onChange={async (eo) => {
-                    updateCheckedBox(eo);
-                  }}
-                  defaultChecked={value.data().complited}
-                  className="Completed"
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                />
-                <label className="Completed-label" htmlFor="vehicle1">
-                  {" "}
-                  Completed
-                </label>
-              </div>
-            </div>
-            <section className="container-input-tasks">
-              <ul className="unorder-list-Box-input-task">
-                {value.data().details.map((item) => {
-                  return (
-                    <li key={item} className="Box-input-tasks">
-                      <input
-                        defaultValue={item}
-                        className="Box-input-tasks-input"
-                        type="text"
-                      />
-                      <i
-                        onClick={() => {
-                          DeleteArray(item);
-                        }}
-                        className="fa-solid fa-trash"
-                      ></i>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="Box-input-tasks-add">
-                <input type="text" className="ADDTask" />
-                <button className="AddButton  background-color">Add </button>
-                <button className="AddButton background-color">Cancel</button>
-                
-              </div>
-            </section>
-            <button className="AddButton">Add More</button>
-            <button className="DeleteButton"> Delete Task</button>
           </main>
-        </>
-      );
-    }
+        ) : (
+          <>
+            <main>
+              <TitleEdit
+                complited={complited}
+                user={user}
+                userId={userId}
+                updateData={updateData}
+              />
+              <SubTasksSection
+              setNewTask={setNewTask}
+              newTask={newTask}
+                setisOpeninputAddTask={setisOpeninputAddTask}
+                isOpeninputAddTask={isOpeninputAddTask}
+                AddToArray={AddToArray}
+                DeleteArray={DeleteArray}
+                updateCheckedBox={updateCheckedBox}
+                user={user}
+                userId={userId}
+              />
+
+              <button
+                onClick={() => setisOpeninputAddTask(true)}
+                className="AddButton"
+              >
+                Add More
+              </button>
+         <Btnssection  user={user} DeleteItem={DeleteItem}/>
+            
+            </main>
+          </>
+        )}
+      </>
+    );
   }
 }
 

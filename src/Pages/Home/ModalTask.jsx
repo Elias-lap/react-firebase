@@ -20,7 +20,7 @@ function ModalTask({handelChangeState, sendDatatofirestore,Loading,  Addtitle ,t
         />
       </li>
       <li>
-        <div>
+        <div className="container-details">
           <input
             className="input-small-screen-Add-task"
             onChange={(eo) => {

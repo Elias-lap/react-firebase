@@ -11,7 +11,11 @@ import Home from "./Pages/Home/Home.jsx";
 import EditTask from "./components/EditTask/EditTask.jsx";
 
 const router = createBrowserRouter([
+  
+  
+  
   {
+    
     path : '/',
     element: <Layout />,
     children: [
@@ -23,19 +27,19 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
-        errorElement: <ErrorPage/>,
+        
       },
       
       {
         path: "/about",
         element: <About />,
-        errorElement: <ErrorPage/>,
+        
       },
       {
         path: "/EditTask/:userId",
         element: <EditTask/>,
-        errorElement: <ErrorPage/>,
       },
+    
     ],
     errorElement: <ErrorPage/>,
   },

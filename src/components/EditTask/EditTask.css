@@ -80,6 +80,10 @@ color: beige;
  height: 1rem;
  accent-color: green;
  cursor: pointer;
+}
+.Completed:focus{
+  background-color: transparent;
+
 
 }
 .Completed-label{
@@ -88,6 +92,10 @@ color: beige;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 
+}
+/* conditinally styling for check box input  */
+.line-throw{
+  text-decoration: line-through  wavy  rgb(85, 61, 61);
 }
 .dark  .Completed-label{
 color: bisque;
@@ -125,31 +133,65 @@ section.container-input-tasks{
   background-color: rgb(143, 138, 138);
   font-size: 1.5rem;
 }
+/* styling input for add new task */
 .Box-input-tasks-add{
 display: flex;
 justify-content: flex-start;
+flex-direction: row;
+align-items: center;
+gap: 1rem;
 border-radius: 1rem;
 width: 97%;
-margin-left: 1rem;
+ margin: 1rem auto;
 background-color: gray;
+animation: showAddTask 2s 1;
+}
+@keyframes showAddTask {
+  0%   {transform: scale(0);}
+  50%   {transform: scale(1.2);}
+  100%   {transform: scale(1);}
+} 
+@media (max-width: 800px) {
+  .Box-input-tasks-add{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  };
 
 }
+/* input///// */
  .ADDTask{
-  width: 40%;
+  width: 60%;
   padding: 1rem;
   border-radius: 1rem;
   border: none;
   background-color: rgb(252, 248, 248);
   font-size: 1rem;
-
+  margin: 10px;
+  color: black;
+  
 
 }
-.background-color{
-  background-color: rgb(36, 99, 99) !important;
+
+.button-Add-task{
+  background-color: rgb(36, 99, 99) ;
+  padding: 0px  12px;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin: 10px;
+  cursor: pointer;
+  height: 40px;
+  
 }
+/* end styling task input */
 .dark .Box-input-tasks input{
   background-color: rgb(82, 78, 78);
 }
+
 .Box-input-tasks:hover  .Box-input-tasks-input{
   border-left: 10px solid rgba(66, 65, 65, 0.644);
   background-color:rgb(85, 81, 81) ;

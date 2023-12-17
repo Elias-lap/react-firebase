@@ -1,0 +1,48 @@
+
+/* styling Dropdown */
+
+.languages{
+  cursor: pointer;
+  position: relative;
+
+}
+.list-languages{
+  z-index: 999;
+  border-top: 1px solid  rgba(0, 255, 255, 0.486);
+  border-radius: 5px;
+  top: 15px;
+  left: -2px;
+  position: absolute;
+  flex-direction: column;
+  display: none;
+  margin: 1rem  auto;
+  background-color: rgba(0, 0, 0, 0.726);
+  transition: all .4s;
+  width: 102px;
+  
+  
+}
+.list-languages li{
+  border-bottom: 1px solid black;
+ padding: .5rem ;
+ width: 100%;
+ text-align: start;
+
+ transition: .3s;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.list-languages li:hover{
+ background-color: rgba(0, 0, 0, 0.788) ;
+}
+.languages:hover .list-languages{
+  display: flex;
+}
+@media (max-width: 600px) {
+  .list-languages{
+    background-color: rgba(56, 24, 24, 0.911);
+    top: 1.2rem;
+  }
+  
+}
