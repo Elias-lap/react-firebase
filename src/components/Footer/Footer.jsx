@@ -14,6 +14,7 @@ function Footer() {
   Designed and developed by devElias
   <span>🧡</span>
 </footer> )}
+  
     
 if(i18n.language === "ar"){
 return(
