@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-firebase.git/static/css/main.c97d2628.css",
+    "main.js": "/react-firebase.git/static/js/main.5c8b317c.js",
+    "service-worker.js": "/react-firebase.git/service-worker.js",
+    "index.html": "/react-firebase.git/index.html",
+    "main.c97d2628.css.map": "/react-firebase.git/static/css/main.c97d2628.css.map",
+    "main.5c8b317c.js.map": "/react-firebase.git/static/js/main.5c8b317c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c97d2628.css",
+    "static/js/main.5c8b317c.js"
+  ]
+}
